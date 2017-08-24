@@ -1,0 +1,30 @@
+.client-wrapper
+  .row.section-header
+    h4.page-title
+      div Создание клиента
+
+  .content-container
+    .col.s12
+      label Ф.И.О.
+      = input type='text' value=model.name
+    .col.s12
+      label Телефон
+      = input type='text' value=model.mobile
+    .col.s12
+      label Email
+      = input type='email' value=model.email
+
+    if session.currentUser.isOwner
+      .col.s12
+        select-component title='Выбор франшизы' options=franchises value=model.franchise optionType='franchise'
+
+    if session.currentUser.isAdminOrOwner
+      if model.franchise
+        .col.s12
+          select-component title='Выбор клуба' options=model.franchise.clubs onSelect='clubOnSelect' optionType='club'
+
+    .col.s12.actions
+      a.waves-effect.waves-light.btn-large.white-text{action 'save'} Сохранить
+      = link-to 'client' model.id class="waves-effect waves-light btn-large"
+        | Отмена
+

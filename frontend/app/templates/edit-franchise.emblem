@@ -1,0 +1,44 @@
+.franchise-templates-wrapper
+  .row.section-header
+    h4.page-title
+      div.inline-block Редактирование франшизы
+  .content-container
+    form
+      .col.s12
+        label Имя франшизы
+        = input type='text' value=model.name
+      .col.s12
+        label Описание франшизы
+        = textarea value=model.description class='materialize-textarea'
+      .col.s12
+        label Услуги
+        .row
+          if model.services
+            ul.collection
+              each model.services as |service|
+                li.collection-item
+                  .row
+                    .col.s6
+                      label Название
+                      = input type='text' value=service.name placeholder='Введите название услуги'
+                    .col.s12
+                      label Описание
+                      = textarea value=service.description class='materialize-textarea' placeholder='Заполните описание услуги'
+                    .col.s4
+                      label Стоимость
+                      = input type='text' value=service.price placeholder='Стоимость услуги'
+                  .row
+                    .col.s12
+                      a.waves-effect.waves-light.btn.white-text{action 'removeService' service}
+                        i.fa.fa-times
+                        |&nbsp;Удалить услугу
+                br
+            .clearfix
+        .row
+          a.waves-effect.waves-light.btn.white-text{action 'addService'}
+            i.fa.fa-plus
+            |&nbsp;Добавить услугу
+      .col.s12.actions
+        a.waves-effect.waves-light.btn-large.white-text{action 'save'} Сохранить
+        = link-to 'franchise' model.id class="waves-effect waves-light btn-large"
+          | Отмена

@@ -1,0 +1,17 @@
+.pushes-wrapper
+  .row.section-header
+    h4.page-title
+      div События
+  .content-container
+      table.responsive-table
+        thead
+          tr
+            th  Название
+            th  Начало
+            th  Конец
+        tbody
+          = each model as |event|
+            tr
+              td = event.name
+              td = event.begin
+              td = event.end

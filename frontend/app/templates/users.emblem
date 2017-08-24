@@ -1,0 +1,15 @@
+.pushes-wrapper
+  .row.section-header
+    h4.page-title
+      div События
+  .content-container
+      table.responsive-table
+        thead
+          tr
+            th  Псевдоним
+            th  Имя
+        tbody
+          = each model as |user|
+            tr
+              td = user.username
+              td = user.real_name
